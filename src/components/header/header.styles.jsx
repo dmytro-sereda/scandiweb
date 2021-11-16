@@ -29,6 +29,8 @@ export const CurrencyButton = styled.div`
 
 export const Arrow = styled(ArrowIcon)`
   margin-left: 10px;
+  transition: all 0.4s;
+  ${(props) => (props.isHidden === true ? "" : "transform: rotate(180deg)")};
 `;
 
 export const CartButton = styled.div`
@@ -54,10 +56,12 @@ export const CartButton = styled.div`
 
 export const CurrencyDropdown = styled.div`
   position: absolute;
+  width: 114px;
   top: 100%;
   right: 0;
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
-  padding: 20px 30px 20px 20px;
+  padding: 20px 0 20px 20px;
+  ${(props) => (props.isHidden === true ? "display: none" : "")}
 `;
 
 export const CurrencyItem = styled.div`

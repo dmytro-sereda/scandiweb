@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const CartDropdownContainer = styled.div`
   width: 327px;
   background-color: white;
-  height: 500px;
   position: absolute;
   top: 100%;
   right: 0;
   border: 1px solid black;
   padding: 8px 16px 20px 16px;
+  ${(props) => (props.isHidden === true ? "display: none" : "")}
 `;
 
 export const CartDropdownHeading = styled.p`

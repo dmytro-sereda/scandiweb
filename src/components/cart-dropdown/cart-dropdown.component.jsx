@@ -1,4 +1,7 @@
 import React from "react";
+import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
 
 import {
   CartDropdownContainer,
@@ -15,14 +18,15 @@ import DropdownItem from "../dropdown-item/dropdown-item.component";
 
 class CartDropdown extends React.Component {
   render() {
+    const { isHidden } = this.props;
     return (
-      <CartDropdownContainer>
+      <CartDropdownContainer isHidden={isHidden}>
         <CartDropdownHeading>
           My Bag, <span>2 items</span>
         </CartDropdownHeading>
 
         <DropdownItemsContainer>
-          <DropdownItem></DropdownItem>
+          {/* <DropdownItem></DropdownItem> */}
         </DropdownItemsContainer>
 
         <TotalContainer>
@@ -38,4 +42,8 @@ class CartDropdown extends React.Component {
   }
 }
 
-export default CartDropdown;
+const mapStateToProps = createStructuredSelector({
+  isHidden: selectCartHidden,
+});
+
+export default connect(mapStateToProps)(CartDropdown);
