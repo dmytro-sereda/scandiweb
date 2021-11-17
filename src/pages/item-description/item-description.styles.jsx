@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 export const ItemDescriptionSection = styled.section`
   display: flex;
+  padding-top: 80px;
 `;
 
-export const SideImagesContainer = styled.div``;
+export const SideImagesContainer = styled.div`
+  max-height: 510px;
+  overflow: scroll;
+`;
 
 export const SideImageWrapper = styled.div`
   width: 80px;
-  height: 80px;
+  /* height: 80px; */
 
   &:not(:last-of-type) {
     margin-bottom: 30px;
@@ -18,7 +22,9 @@ export const SideImageWrapper = styled.div`
 export const SideImage = styled.img`
   display: block;
   width: 100%;
+  height: 100%;
   cursor: pointer;
+  object-fit: cover;
 `;
 
 export const MainImageContainer = styled.div`
@@ -30,6 +36,8 @@ export const MainImageContainer = styled.div`
 export const MainImage = styled.img`
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const ItemDescriptionContainer = styled.div`
@@ -57,13 +65,14 @@ export const SizeButtonsContainer = styled.div`
   display: flex;
   margin-top: 10px;
   flex-wrap: wrap;
+  gap: 12px 0;
 `;
 
 export const SizeButton = styled.p`
   border: 1px solid #1d1f22;
   color: #1d1f22;
-  width: 63px;
-  padding: 13px 0;
+  /* width: 63px; */
+  padding: 13px 13px;
   text-align: center;
   transition: all 0.4s;
   cursor: pointer;
@@ -94,9 +103,10 @@ export const DescriptionButton = styled.a`
   padding: 16px 93px;
   display: block;
   margin: 36px 0 56px 0;
+  cursor: pointer;
 `;
 
-export const ItemText = styled.p`
+export const ItemText = styled.div`
   font-weight: 400;
   font-size: 16px;
 `;

@@ -7,6 +7,7 @@ import {
   selectCurrentCurrency,
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selectors";
+import { updateCurrentItem } from "../../redux/shop/shop.actions";
 
 import {
   ItemContainer,
@@ -15,6 +16,8 @@ import {
   ItemTitle,
   ItemImage,
   Cart,
+  ItemImageContainer,
+  NotInStock,
 } from "./item.styles";
 
 class Item extends React.Component {
@@ -26,6 +29,7 @@ class Item extends React.Component {
       item,
       images,
       inStock,
+      updateCurrentItem,
       currentCurrency,
       currentCurrencySymbol,
       addItemToCart,
@@ -33,7 +37,10 @@ class Item extends React.Component {
 
     return (
       <ItemContainer>
-        <ItemImage src={images[0]} alt={name} />
+        <ItemImageContainer>
+          {inStock === true ? "" : <NotInStock>Not in stock</NotInStock>}
+          <ItemImage src={images[0]} alt={name} />
+        </ItemImageContainer>
         {inStock === true ? (
           <ItemButton onClick={() => addItemToCart(item)}>
             <Cart />
@@ -42,12 +49,12 @@ class Item extends React.Component {
           ""
         )}
 
-        <ItemTitle>
+        <ItemTitle to="/product" onClick={() => updateCurrentItem(item)}>
           {brand} {name}
         </ItemTitle>
         <ItemPrice>
           {currentCurrencySymbol}
-          {prices.find((p) => p.currency === currentCurrency).amount}
+          {prices.find((p) => p.currency === currentCurrency).amount.toFixed(2)}
         </ItemPrice>
       </ItemContainer>
     );
@@ -61,6 +68,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItemToCart(item)),
+  updateCurrentItem: (item) => dispatch(updateCurrentItem(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);

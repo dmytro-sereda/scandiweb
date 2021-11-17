@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const NavigationContainer = styled.div``;
 
@@ -15,7 +16,7 @@ export const NavigationItem = styled.li`
   } */
 `;
 
-export const NavigationLink = styled.a`
+export const NavigationLink = styled(Link)`
   text-decoration: none;
   color: #1d1f22;
   font-size: 16px;

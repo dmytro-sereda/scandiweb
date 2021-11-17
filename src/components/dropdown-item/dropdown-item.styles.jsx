@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 export const DropdownItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -15,10 +17,13 @@ export const ItemInfoContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const ItemBrandAndName = styled.p`
+export const ItemBrandAndName = styled(Link)`
   font-weight: 300;
   font-size: 16px;
   max-width: 132px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #1d1f22;
 `;
 
 export const ItemPrice = styled.p`
@@ -29,6 +34,7 @@ export const ItemPrice = styled.p`
 
 export const SizeButtonsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   /* margin-top: 27px; */
 `;
 
@@ -36,8 +42,13 @@ export const SizeButton = styled.a`
   display: inline-block;
   border: 1px solid #1d1f22;
   text-align: center;
-  width: 24px;
-  padding: 2px 0;
+  /* width: 24px; */
+  padding: 2px 5px;
+  cursor: pointer;
+
+  &:not(:last-of-type) {
+    margin-right: 5px;
+  }
 `;
 
 export const QuantityButtonsContainer = styled.div`

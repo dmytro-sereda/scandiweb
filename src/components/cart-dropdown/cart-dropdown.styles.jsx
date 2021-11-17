@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 export const CartDropdownContainer = styled.div`
   width: 327px;
   background-color: white;
@@ -55,9 +57,10 @@ export const CartDropdownViewButton = styled.a`
   cursor: pointer;
 `;
 
-export const CheckoutButton = styled.a`
+export const CheckoutButton = styled(Link)`
   font-size: 14px;
   text-transform: uppercase;
+  text-decoration: none;
   font-weight: 600;
   display: inline-block;
   padding: 14px 29.5px;

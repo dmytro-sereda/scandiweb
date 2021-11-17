@@ -1,4 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { addItemToCart } from "../../redux/cart/cart.actions";
+import {
+  selectCurrencySymbol,
+  selectCurrentCurrency,
+} from "../../redux/currency/currency.selectors";
+import { selectCurrentItem } from "../../redux/shop/shop.selectors";
 
 import {
   ItemDescriptionSection,
@@ -20,31 +28,67 @@ import {
 
 class ItemDescriptionPage extends React.Component {
   render() {
+    const {
+      currentItem,
+      currentCurrency,
+      currentCurrencySymbol,
+      addItemToCart,
+    } = this.props;
     return (
       <ItemDescriptionSection>
-        <SideImagesContainer></SideImagesContainer>
+        <SideImagesContainer>
+          {currentItem.gallery.map((item, index) => (
+            <SideImageWrapper>
+              <SideImage src={item} alt="Product image" key={index} />
+            </SideImageWrapper>
+          ))}
+        </SideImagesContainer>
 
         <MainImageContainer>
-          <MainImage src="" alt="" />
+          <MainImage src={currentItem.gallery[0]} alt="Product image" />
         </MainImageContainer>
 
         <ItemDescriptionContainer>
-          <ItemBrand></ItemBrand>
-          <ItemName></ItemName>
+          <ItemBrand>{currentItem.brand}</ItemBrand>
+          <ItemName>{currentItem.name}</ItemName>
 
           <ParameterName>Size:</ParameterName>
-          <SizeButtonsContainer></SizeButtonsContainer>
+          <SizeButtonsContainer>
+            {currentItem.attributes[0].items.map((item, index) => (
+              <SizeButton key={index}>{item.displayValue}</SizeButton>
+            ))}
+          </SizeButtonsContainer>
 
           <ParameterName>Price:</ParameterName>
-          <ItemPrice></ItemPrice>
+          <ItemPrice>
+            {currentCurrencySymbol}
+            {currentItem.prices
+              .find((i) => i.currency === currentCurrency)
+              .amount.toFixed(2)}
+          </ItemPrice>
 
-          <DescriptionButton>Add to cart</DescriptionButton>
+          <DescriptionButton onClick={() => addItemToCart(currentItem)}>
+            Add to cart
+          </DescriptionButton>
 
-          <ItemText></ItemText>
+          <ItemText>{currentItem.description.slice(3, -4)}</ItemText>
         </ItemDescriptionContainer>
       </ItemDescriptionSection>
     );
   }
 }
 
-export default ItemDescriptionPage;
+const mapStateToProps = createStructuredSelector({
+  currentCurrency: selectCurrentCurrency,
+  currentCurrencySymbol: selectCurrencySymbol,
+  currentItem: selectCurrentItem,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addItemToCart: (item) => dispatch(addItemToCart(item)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ItemDescriptionPage);

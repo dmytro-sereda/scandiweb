@@ -46,9 +46,15 @@ export const SizeButton = styled.a`
   padding: 13px 26px;
   font-weight: 400;
   cursor: pointer;
+  transition: all 0.4s;
 
   &:not(:last-of-type) {
     margin-right: 12px;
+  }
+
+  &:hover {
+    background-color: #1d1f22;
+    color: white;
   }
 `;
 
@@ -60,6 +66,7 @@ export const QuantityButtonsContainer = styled.div`
   font-size: 24px;
   align-items: center;
   margin-right: 10px;
+  height: 100%;
 `;
 
 export const ChangeQuantityButton = styled.a`
@@ -80,4 +87,11 @@ export const ItemPictureContainer = styled.div`
 export const ItemPicture = styled.img`
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const RightSideContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

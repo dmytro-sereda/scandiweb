@@ -5,6 +5,9 @@ import {
   selectCurrencySymbol,
   selectCurrentCurrency,
 } from "../../redux/currency/currency.selectors";
+import { addItemToCart } from "../../redux/cart/cart.actions";
+import { decreaseItemCount } from "../../redux/cart/cart.actions";
+import { updateCurrentItem } from "../../redux/shop/shop.actions";
 
 import {
   DropdownItemContainer,
@@ -19,8 +22,6 @@ import {
   ItemPicture,
   RightSideContainer,
 } from "./dropdown-item.styles";
-import { addItemToCart } from "../../redux/cart/cart.actions";
-import { decreaseItemCount } from "../../redux/cart/cart.actions";
 
 class DropdownItem extends React.Component {
   render() {
@@ -30,22 +31,32 @@ class DropdownItem extends React.Component {
       currentCurrencySymbol,
       addItemToCart,
       decreaseItemCount,
+      updateCurrentItem,
     } = this.props;
     return (
       <DropdownItemContainer>
         <ItemInfoContainer>
-          <ItemBrandAndName>
+          <ItemBrandAndName
+            to="/product"
+            onClick={() => updateCurrentItem(item)}
+          >
             {item.brand} <br />
             {item.name}
           </ItemBrandAndName>
 
           <ItemPrice>
             {currentCurrencySymbol}
-            {item.prices.find((i) => i.currency === currentCurrency).amount}
+            {item.prices
+              .find((i) => i.currency === currentCurrency)
+              .amount.toFixed(2)}
           </ItemPrice>
 
           <SizeButtonsContainer>
-            <SizeButton>S</SizeButton>
+            {item.attributes[0].items
+              .filter((_, index) => index < 2)
+              .map((item, index) => (
+                <SizeButton key={index}>{item.displayValue}</SizeButton>
+              ))}
           </SizeButtonsContainer>
         </ItemInfoContainer>
 
@@ -77,6 +88,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItemToCart(item)),
   decreaseItemCount: (item) => dispatch(decreaseItemCount(item)),
+  updateCurrentItem: (item) => dispatch(updateCurrentItem(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DropdownItem);

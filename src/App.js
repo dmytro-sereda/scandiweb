@@ -38,7 +38,7 @@ function App() {
           {/* <Route exact path="/shop/:collectionId" element={<CategoryPage />} /> */}
           <Route exact path="/shop" element={<CategoryPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/item" element={<ItemDescription />} />
+          <Route path="/product" element={<ItemDescription />} />
         </Routes>
       </div>
     </ApolloProvider>

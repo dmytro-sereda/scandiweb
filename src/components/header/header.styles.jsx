@@ -40,8 +40,6 @@ export const CartButton = styled.div`
 
   &::before {
     position: absolute;
-    /* content: "1"; */
-    ${(props) => `content: ${props.cartItems.length};`}
     color: white;
     text-align: center;
     font-family: "Roboto", sans-serif;
@@ -52,8 +50,14 @@ export const CartButton = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    padding-top: 1px;
     ${(props) =>
-      props.cartItems.length === 0 ? "display: none" : "display:  block"}
+      props.cartItems.length === 0 ? "display: none;" : "display:  block;"}
+    ${(props) =>
+      `content: '${props.cartItems.reduce(
+        (acc, i) => (acc += i.quantity),
+        0
+      )}';`}
   }
 `;
 
@@ -64,6 +68,8 @@ export const CurrencyDropdown = styled.div`
   right: 0;
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
   padding: 20px 0 20px 20px;
+  background-color: white;
+  z-index: 10;
   ${(props) => (props.isHidden === true ? "display: none" : "")}
 `;
 
