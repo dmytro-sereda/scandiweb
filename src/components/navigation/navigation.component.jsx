@@ -13,15 +13,11 @@ class Navigation extends React.Component {
       <NavigationContainer>
         <NavigationList>
           <NavigationItem>
-            <NavigationLink>Women</NavigationLink>
+            <NavigationLink>Clothes</NavigationLink>
           </NavigationItem>
 
           <NavigationItem>
-            <NavigationLink>Men</NavigationLink>
-          </NavigationItem>
-
-          <NavigationItem>
-            <NavigationLink>Kids</NavigationLink>
+            <NavigationLink>Tech</NavigationLink>
           </NavigationItem>
         </NavigationList>
       </NavigationContainer>

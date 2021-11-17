@@ -18,6 +18,7 @@ export const ItemInfoContainer = styled.div`
 export const ItemBrandAndName = styled.p`
   font-weight: 300;
   font-size: 16px;
+  max-width: 132px;
 `;
 
 export const ItemPrice = styled.p`
@@ -47,6 +48,7 @@ export const QuantityButtonsContainer = styled.div`
   font-size: 16px;
   align-items: center;
   margin-right: 10px;
+  height: 100%;
 `;
 
 export const ChangeQuantityButton = styled.a`
@@ -66,4 +68,10 @@ export const ItemPictureContainer = styled.div`
 export const ItemPicture = styled.img`
   display: block;
   width: 100%;
+`;
+
+export const RightSideContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

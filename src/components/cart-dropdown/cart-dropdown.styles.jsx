@@ -8,6 +8,7 @@ export const CartDropdownContainer = styled.div`
   right: 0;
   border: 1px solid black;
   padding: 8px 16px 20px 16px;
+  z-index: 10;
   ${(props) => (props.isHidden === true ? "display: none" : "")}
 `;
 
@@ -51,6 +52,7 @@ export const CartDropdownViewButton = styled.a`
   padding: 13px 36px;
   color: #1d1f22;
   border: 1px solid #1d1f22;
+  cursor: pointer;
 `;
 
 export const CheckoutButton = styled.a`
@@ -62,4 +64,5 @@ export const CheckoutButton = styled.a`
   color: white;
   background-color: #5ece7b;
   margin-left: 12px;
+  cursor: pointer;
 `;

@@ -6,3 +6,13 @@ export const selectCurrencyHidden = createSelector(
   [selectCurrency],
   (currency) => currency.isHidden
 );
+
+export const selectCurrencySymbol = createSelector(
+  [selectCurrency],
+  (currency) => currency.currentCurrencySymbol
+);
+
+export const selectCurrentCurrency = createSelector(
+  [selectCurrency],
+  (currency) => currency.currentCurrency
+);

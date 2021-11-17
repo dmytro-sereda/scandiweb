@@ -40,7 +40,8 @@ export const CartButton = styled.div`
 
   &::before {
     position: absolute;
-    content: "2";
+    /* content: "1"; */
+    ${(props) => `content: ${props.cartItems.length};`}
     color: white;
     text-align: center;
     font-family: "Roboto", sans-serif;
@@ -51,6 +52,8 @@ export const CartButton = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    ${(props) =>
+      props.cartItems.length === 0 ? "display: none" : "display:  block"}
   }
 `;
 
