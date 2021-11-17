@@ -5,7 +5,7 @@ import {
   NavigationItem,
   NavigationLink,
   NavigationList,
-} from "./navifation.styles";
+} from "./navigation.styles";
 
 class Navigation extends React.Component {
   render() {
@@ -13,11 +13,11 @@ class Navigation extends React.Component {
       <NavigationContainer>
         <NavigationList>
           <NavigationItem>
-            <NavigationLink to="/shop">Clothes</NavigationLink>
+            <NavigationLink to="/shop/clothes">Clothes</NavigationLink>
           </NavigationItem>
 
           <NavigationItem>
-            <NavigationLink to="/shop">Tech</NavigationLink>
+            <NavigationLink to="/shop/tech">Tech</NavigationLink>
           </NavigationItem>
         </NavigationList>
       </NavigationContainer>

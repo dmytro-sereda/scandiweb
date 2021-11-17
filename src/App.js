@@ -1,6 +1,5 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import React, { useEffect } from "react";
 import Header from "./components/header/header.component";
 import CartPage from "./pages/cart/cart.component";
 import CategoryPage from "./pages/category/category.component";
@@ -34,12 +33,14 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
+          {/* <Switch> */}
           <Route exact path="/" element={<MainPage />} />
-          {/* <Route exact path="/shop/:collectionId" element={<CategoryPage />} /> */}
-          <Route exact path="/shop" element={<CategoryPage />} />
+          <Route exact path="/shop/:collectionId" element={<CategoryPage />} />
+          {/* <Route exact path="/shop" element={<CategoryPage />} /> */}
           <Route path="/cart" element={<CartPage />} />
           <Route path="/product" element={<ItemDescription />} />
         </Routes>
+        {/* </Switch> */}
       </div>
     </ApolloProvider>
   );

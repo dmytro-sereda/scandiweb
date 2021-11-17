@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { LOAD_DATA } from "../../GraphQL/queries";
 import { useQuery } from "@apollo/client";
-import { SectionHeading } from "./category.styles";
-import ItemsCollection from "../../components/items-collection/items-collection.component";
+import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { updateCollections } from "../../redux/shop/shop.actions";
-import { createStructuredSelector } from "reselect";
 import { selectCollections } from "../../redux/shop/shop.selectors";
+// import { withRouter } from "react-router";
+import { useRouteMatch } from "react-router-dom";
+
+import { SectionHeading } from "./category.styles";
+import ItemsCollection from "../../components/items-collection/items-collection.component";
 
 const CategoryPage = ({ updateCollections, collections }) => {
   const { data } = useQuery(LOAD_DATA);
@@ -17,7 +20,8 @@ const CategoryPage = ({ updateCollections, collections }) => {
     }
   }, [data, updateCollections]);
 
-  console.log(collections[0]);
+  console.log(window);
+
   return (
     <section>
       <SectionHeading>{collections[0].name}</SectionHeading>

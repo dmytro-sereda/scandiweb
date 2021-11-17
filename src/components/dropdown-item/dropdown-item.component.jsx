@@ -7,7 +7,10 @@ import {
 } from "../../redux/currency/currency.selectors";
 import { addItemToCart } from "../../redux/cart/cart.actions";
 import { decreaseItemCount } from "../../redux/cart/cart.actions";
-import { updateCurrentItem } from "../../redux/shop/shop.actions";
+import {
+  updateCurrentItem,
+  updateMainPicture,
+} from "../../redux/shop/shop.actions";
 
 import {
   DropdownItemContainer,
@@ -32,13 +35,17 @@ class DropdownItem extends React.Component {
       addItemToCart,
       decreaseItemCount,
       updateCurrentItem,
+      updateMainPicture,
     } = this.props;
     return (
       <DropdownItemContainer>
         <ItemInfoContainer>
           <ItemBrandAndName
             to="/product"
-            onClick={() => updateCurrentItem(item)}
+            onClick={() => {
+              updateMainPicture(item.gallery[0]);
+              updateCurrentItem(item);
+            }}
           >
             {item.brand} <br />
             {item.name}
@@ -89,6 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItemToCart(item)),
   decreaseItemCount: (item) => dispatch(decreaseItemCount(item)),
   updateCurrentItem: (item) => dispatch(updateCurrentItem(item)),
+  updateMainPicture: (url) => dispatch(updateMainPicture(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DropdownItem);

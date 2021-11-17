@@ -11,3 +11,8 @@ export const selectCurrentItem = createSelector(
   [selectShop],
   (shop) => shop.currentItem
 );
+
+export const selectMainPicture = createSelector(
+  [selectShop],
+  (shop) => shop.currentItemMainPicture
+);

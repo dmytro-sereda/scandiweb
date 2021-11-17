@@ -6,7 +6,11 @@ import {
   selectCurrencySymbol,
   selectCurrentCurrency,
 } from "../../redux/currency/currency.selectors";
-import { selectCurrentItem } from "../../redux/shop/shop.selectors";
+import { updateMainPicture } from "../../redux/shop/shop.actions";
+import {
+  selectCurrentItem,
+  selectMainPicture,
+} from "../../redux/shop/shop.selectors";
 
 import {
   ItemDescriptionSection,
@@ -33,19 +37,26 @@ class ItemDescriptionPage extends React.Component {
       currentCurrency,
       currentCurrencySymbol,
       addItemToCart,
+      updateMainPicture,
+      currentItemMainPicture,
     } = this.props;
     return (
       <ItemDescriptionSection>
         <SideImagesContainer>
           {currentItem.gallery.map((item, index) => (
             <SideImageWrapper>
-              <SideImage src={item} alt="Product image" key={index} />
+              <SideImage
+                src={item}
+                alt="Product image"
+                key={index}
+                onClick={() => updateMainPicture(item)}
+              />
             </SideImageWrapper>
           ))}
         </SideImagesContainer>
 
         <MainImageContainer>
-          <MainImage src={currentItem.gallery[0]} alt="Product image" />
+          <MainImage src={currentItemMainPicture} alt="Product image" />
         </MainImageContainer>
 
         <ItemDescriptionContainer>
@@ -82,10 +93,12 @@ const mapStateToProps = createStructuredSelector({
   currentCurrency: selectCurrentCurrency,
   currentCurrencySymbol: selectCurrencySymbol,
   currentItem: selectCurrentItem,
+  currentItemMainPicture: selectMainPicture,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItemToCart(item)),
+  updateMainPicture: (url) => dispatch(updateMainPicture(url)),
 });
 
 export default connect(

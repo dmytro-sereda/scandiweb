@@ -9,3 +9,8 @@ export const updateCurrentItem = (item) => ({
   type: ShopActionTypes.UPDATE_CURRENT_ITEM,
   payload: item,
 });
+
+export const updateMainPicture = (url) => ({
+  type: ShopActionTypes.UPDATE_MAIN_PICTURE,
+  payload: url,
+});

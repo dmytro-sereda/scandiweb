@@ -7,7 +7,10 @@ import {
   selectCurrentCurrency,
   selectCurrencySymbol,
 } from "../../redux/currency/currency.selectors";
-import { updateCurrentItem } from "../../redux/shop/shop.actions";
+import {
+  updateCurrentItem,
+  updateMainPicture,
+} from "../../redux/shop/shop.actions";
 
 import {
   ItemContainer,
@@ -33,6 +36,7 @@ class Item extends React.Component {
       currentCurrency,
       currentCurrencySymbol,
       addItemToCart,
+      updateMainPicture,
     } = this.props;
 
     return (
@@ -49,7 +53,13 @@ class Item extends React.Component {
           ""
         )}
 
-        <ItemTitle to="/product" onClick={() => updateCurrentItem(item)}>
+        <ItemTitle
+          to="/product"
+          onClick={() => {
+            updateCurrentItem(item);
+            updateMainPicture(item.gallery[0]);
+          }}
+        >
           {brand} {name}
         </ItemTitle>
         <ItemPrice>
@@ -69,6 +79,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItemToCart(item)),
   updateCurrentItem: (item) => dispatch(updateCurrentItem(item)),
+  updateMainPicture: (url) => dispatch(updateMainPicture(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
