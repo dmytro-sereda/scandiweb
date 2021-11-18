@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { ReactComponent as Icon } from "../../assets/chevron-right.svg";
+
 export const CartItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -82,6 +84,7 @@ export const ChangeQuantityButton = styled.a`
 export const ItemPictureContainer = styled.div`
   width: 141px;
   height: 181px;
+  position: relative;
 `;
 
 export const ItemPicture = styled.img`
@@ -89,9 +92,20 @@ export const ItemPicture = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* display: none; */
 `;
 
 export const RightSideContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const SlideButton = styled(Icon)`
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  ${(props) =>
+    props.rotate === true
+      ? "transform: translateY(-50%) rotate(180deg); right: 0;"
+      : "left: 0; transform: translateY(-50%)"};
 `;

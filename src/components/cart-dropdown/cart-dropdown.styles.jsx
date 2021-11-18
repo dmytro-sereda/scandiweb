@@ -46,7 +46,7 @@ export const DropdownButtonsContainer = styled.div`
   display: flex;
 `;
 
-export const CartDropdownViewButton = styled.a`
+export const CartDropdownViewButton = styled(Link)`
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -55,6 +55,7 @@ export const CartDropdownViewButton = styled.a`
   color: #1d1f22;
   border: 1px solid #1d1f22;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const CheckoutButton = styled(Link)`

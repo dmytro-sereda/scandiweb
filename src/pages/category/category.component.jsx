@@ -5,9 +5,7 @@ import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { updateCollections } from "../../redux/shop/shop.actions";
 import { selectCollections } from "../../redux/shop/shop.selectors";
-// import { withRouter } from "react-router";
-import { useRouteMatch } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import { SectionHeading } from "./category.styles";
 import ItemsCollection from "../../components/items-collection/items-collection.component";
 
@@ -20,12 +18,12 @@ const CategoryPage = ({ updateCollections, collections }) => {
     }
   }, [data, updateCollections]);
 
-  console.log(window);
-
+  let { collectionId } = useParams();
+  const collectionToUse = collections.find((c) => c.name === collectionId);
   return (
     <section>
-      <SectionHeading>{collections[0].name}</SectionHeading>
-      <ItemsCollection collection={collections[0].products} />
+      <SectionHeading>{collectionToUse.name}</SectionHeading>
+      <ItemsCollection collection={collectionToUse.products} />
     </section>
   );
 };

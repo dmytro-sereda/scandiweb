@@ -60,10 +60,8 @@ class CartDropdown extends React.Component {
         </TotalContainer>
 
         <DropdownButtonsContainer>
-          <CartDropdownViewButton>View Bag</CartDropdownViewButton>
-          <CheckoutButton to="/cart" onClick={() => console.log(2)}>
-            Check Out
-          </CheckoutButton>
+          <CartDropdownViewButton to="/cart">View Bag</CartDropdownViewButton>
+          <CheckoutButton to="/">Check Out</CheckoutButton>
         </DropdownButtonsContainer>
       </CartDropdownContainer>
     );

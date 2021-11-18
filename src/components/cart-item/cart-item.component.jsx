@@ -22,6 +22,7 @@ import {
   ItemPictureContainer,
   ItemPicture,
   RightSideContainer,
+  SlideButton,
 } from "./cart-item.styles";
 
 class CartItem extends React.Component {
@@ -61,9 +62,14 @@ class CartItem extends React.Component {
               -
             </ChangeQuantityButton>
           </QuantityButtonsContainer>
-
+          {/* I have searched many solutions for the slider, however, all of them
+          require the use of hooks, which obviously do not work with Class components. 
+          I would be happy to hear from you how would you implement such slider with class component and not functional */}
           <ItemPictureContainer>
             <ItemPicture src={item.gallery[0]} />
+
+            <SlideButton />
+            <SlideButton rotate={true} />
           </ItemPictureContainer>
         </RightSideContainer>
       </CartItemContainer>

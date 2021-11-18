@@ -28,6 +28,7 @@ import {
   ItemPrice,
   DescriptionButton,
   ItemText,
+  UnavailableItem,
 } from "./item-description.styles";
 
 class ItemDescriptionPage extends React.Component {
@@ -44,7 +45,7 @@ class ItemDescriptionPage extends React.Component {
       <ItemDescriptionSection>
         <SideImagesContainer>
           {currentItem.gallery.map((item, index) => (
-            <SideImageWrapper>
+            <SideImageWrapper key={index}>
               <SideImage
                 src={item}
                 alt="Product image"
@@ -63,9 +64,9 @@ class ItemDescriptionPage extends React.Component {
           <ItemBrand>{currentItem.brand}</ItemBrand>
           <ItemName>{currentItem.name}</ItemName>
 
-          <ParameterName>Size:</ParameterName>
+          <ParameterName>{currentItem.attributes[0]?.name}:</ParameterName>
           <SizeButtonsContainer>
-            {currentItem.attributes[0].items.map((item, index) => (
+            {currentItem.attributes[0]?.items.map((item, index) => (
               <SizeButton key={index}>{item.displayValue}</SizeButton>
             ))}
           </SizeButtonsContainer>
@@ -78,9 +79,13 @@ class ItemDescriptionPage extends React.Component {
               .amount.toFixed(2)}
           </ItemPrice>
 
-          <DescriptionButton onClick={() => addItemToCart(currentItem)}>
-            Add to cart
-          </DescriptionButton>
+          {currentItem.inStock === true ? (
+            <DescriptionButton onClick={() => addItemToCart(currentItem)}>
+              Add to cart
+            </DescriptionButton>
+          ) : (
+            <UnavailableItem>Sorry, this item is unavailable</UnavailableItem>
+          )}
 
           <ItemText>{currentItem.description.slice(3, -4)}</ItemText>
         </ItemDescriptionContainer>

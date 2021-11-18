@@ -109,4 +109,13 @@ export const DescriptionButton = styled.a`
 export const ItemText = styled.div`
   font-weight: 400;
   font-size: 16px;
+  max-height: 60px;
+  overflow: scroll;
+`;
+
+export const UnavailableItem = styled.p`
+  font-weight: 700;
+  font-size: 24px;
+  color: black;
+  margin: 20px 0;
 `;
