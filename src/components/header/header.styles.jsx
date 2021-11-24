@@ -30,7 +30,7 @@ export const CurrencyButton = styled.div`
 export const Arrow = styled(ArrowIcon)`
   margin-left: 10px;
   transition: all 0.4s;
-  ${(props) => (props.isHidden === true ? "" : "transform: rotate(180deg)")};
+  ${(props) => (props.ishidden === "true" ? "" : "transform: rotate(180deg)")};
 `;
 
 export const CartButton = styled.div`
@@ -67,17 +67,25 @@ export const CurrencyDropdown = styled.div`
   top: 100%;
   right: 0;
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
-  padding: 20px 0 20px 20px;
+  /* padding: 20px 0 20px 20px; */
   background-color: white;
   z-index: 10;
-  ${(props) => (props.isHidden === true ? "display: none" : "")}
+  ${(props) => (props.ishidden === "true" ? "display: none" : "")}
 `;
 
 export const CurrencyItem = styled.div`
   cursor: pointer;
   text-transform: uppercase;
+  transition: all 0.4s;
+  text-align: center;
+  padding: 10px 0;
 
-  &:not(:last-of-type) {
-    margin-bottom: 20px;
+  &:hover {
+    background-color: grey;
+    color: white;
   }
+
+  /* &:not(:last-of-type) {
+    margin-bottom: 20px;
+  } */
 `;

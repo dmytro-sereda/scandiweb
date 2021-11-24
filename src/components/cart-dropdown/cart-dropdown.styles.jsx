@@ -11,7 +11,7 @@ export const CartDropdownContainer = styled.div`
   border: 1px solid black;
   padding: 8px 16px 20px 16px;
   z-index: 10;
-  ${(props) => (props.isHidden === true ? "display: none" : "")}
+  ${(props) => (props.ishidden === true ? "display: none" : "")}
 `;
 
 export const CartDropdownHeading = styled.p`
@@ -26,7 +26,8 @@ export const CartDropdownHeading = styled.p`
 export const DropdownItemsContainer = styled.div`
   margin: 20px 0 40px 0;
   max-height: 315px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const TotalContainer = styled.div`

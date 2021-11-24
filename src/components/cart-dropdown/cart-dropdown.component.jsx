@@ -29,7 +29,7 @@ class CartDropdown extends React.Component {
     const { isHidden, cartItems, currentCurrencySymbol, currentCurrency } =
       this.props;
     return (
-      <CartDropdownContainer isHidden={isHidden}>
+      <CartDropdownContainer ishidden={isHidden}>
         <CartDropdownHeading>
           My Bag,{" "}
           <span>

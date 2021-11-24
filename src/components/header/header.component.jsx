@@ -37,7 +37,6 @@ class Header extends React.Component {
       isHidden,
       changeCurrency,
       currentCurrencySymbol,
-      currentCurrency,
       cartItems,
     } = this.props;
     return (
@@ -46,12 +45,12 @@ class Header extends React.Component {
         <Logo />
         <CartAndCurrencyContainer>
           <CurrencyButton onClick={toggleCurrency}>
-            {currentCurrencySymbol} <Arrow isHidden={isHidden} />
+            {currentCurrencySymbol} <Arrow ishidden={`${isHidden}`} />
           </CurrencyButton>
           <CartButton onClick={toggleCart} cartItems={cartItems}>
             <Cart />
           </CartButton>
-          <CurrencyDropdown isHidden={isHidden}>
+          <CurrencyDropdown ishidden={`${isHidden}`}>
             <CurrencyItem
               onClick={() => changeCurrency({ newCur: "USD", symbol: "$" })}
             >
@@ -66,6 +65,16 @@ class Header extends React.Component {
               onClick={() => changeCurrency({ newCur: "JPY", symbol: "¥" })}
             >
               ¥ JPY
+            </CurrencyItem>
+            <CurrencyItem
+              onClick={() => changeCurrency({ newCur: "AUD", symbol: "A$" })}
+            >
+              A$ AUD
+            </CurrencyItem>
+            <CurrencyItem
+              onClick={() => changeCurrency({ newCur: "RUB", symbol: "₽" })}
+            >
+              ₽ RUB
             </CurrencyItem>
           </CurrencyDropdown>
           <CartDropdown />

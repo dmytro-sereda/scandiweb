@@ -14,11 +14,18 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { createStructuredSelector } from "reselect";
+import { selectCurrencyHidden } from "./redux/currency/currency.selectors";
+import { connect } from "react-redux";
+import { selectCartHidden } from "./redux/cart/cart.selectors";
+import { toggleCart } from "./redux/cart/cart.actions";
+import { toggleCurrency } from "./redux/currency/currency.actions";
 
 const errorLink = onError(({ graphqlErrors }) => {
   if (graphqlErrors) {
     graphqlErrors.map(({ message }) => {
       alert(`GraphQL error ${message}`);
+      return message;
     });
   }
 });
@@ -27,10 +34,20 @@ const link = from([errorLink, new HttpLink({ uri: "http://localhost:4000" })]);
 
 const client = new ApolloClient({ cache: new InMemoryCache(), link: link });
 
-function App() {
+function App({ isCurrencyHidden, isCartHidden, toggleCart, toggleCurrency }) {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
+      <div
+        className="App"
+        onClick={() => {
+          if (!isCurrencyHidden) {
+            toggleCurrency();
+          }
+          if (!isCartHidden) {
+            toggleCart();
+          }
+        }}
+      >
         <Header />
         <Routes>
           {/* <Switch> */}
@@ -46,4 +63,14 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  isCurrencyHidden: selectCurrencyHidden,
+  isCartHidden: selectCartHidden,
+});
+
+const mapDispatchToProps = (dispacth) => ({
+  toggleCart: () => dispacth(toggleCart()),
+  toggleCurrency: () => dispacth(toggleCurrency()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
